@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="2028 考研 11408 全程学习规划与每日打卡：数学一、408、英语一、政治、六级与算法竞赛。">
+  <title>研途 408 · 2028 考研打卡</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/calendar.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#today" data-view-link="today">
+        <span class="brand-seal" aria-hidden="true">研</span>
+        <span class="brand-copy">
+          <strong>研途 408</strong>
+          <small>2028 考研 · 11408</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="主导航">
+        <button class="nav-tab is-active" type="button" data-view="today">今日</button>
+        <button class="nav-tab" type="button" data-view="calendar">日历</button>
+        <button class="nav-tab" type="button" data-view="plan">规划</button>
+        <button class="nav-tab" type="button" data-view="stats">数据</button>
+      </nav>
+
+      <div class="top-actions">
+        <span class="countdown-pill">距初试 <b id="top-countdown">417</b> 天</span>
+        <button class="icon-btn" type="button" id="theme-toggle" aria-label="切换深浅色">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" stroke="currentColor" stroke-width="1.6"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 15.2A8.4 8.4 0 0 1 8.8 4a8.6 8.6 0 1 0 11.2 11.2Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="view is-active" id="view-today" data-view-panel="today">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span>2028 届 · 政治 / 英语一 / 数学一 / 408</p>
+          <h1>把 <span class="hero-number" id="hero-days">417</span> 天，<br><em>走成一条线。</em></h1>
+          <p class="hero-sub" id="hero-sub">今天是备考第 1 天。计划已经排到 2027 年 12 月 26 日，休息日也算在计划里。</p>
+          <div class="hero-meta">
+            <span>初试 2027.12.25–26</span>
+            <span>目标 375 分</span>
+            <span>第 <b id="prep-day">1</b> 天</span>
+          </div>
+        </div>
+        <aside class="hero-side" id="hero-side" aria-label="本周主线"></aside>
+      </div>
+
+      <div class="phase-route" id="phase-route" aria-label="七个备考阶段"></div>
+
+      <div class="today-layout">
+        <section class="panel tasks-panel" aria-label="今日任务">
+          <div id="today-head"></div>
+          <div id="today-tasks"></div>
+        </section>
+        <aside class="today-side" id="today-side"></aside>
+      </div>
+    </section>
+
+    <section class="view" id="view-calendar" data-view-panel="calendar" hidden>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span>PLAN CALENDAR</p>
+          <h2>日历</h2>
+          <p class="section-sub">60 周、419 天，休息日也标在格子里。点开任意一天，查看或补卡。</p>
+        </div>
+        <div class="cal-actions">
+          <button class="ghost-btn" type="button" id="cal-today">回到今天</button>
+          <button class="square-btn" type="button" id="cal-prev" aria-label="上个月">←</button>
+          <button class="square-btn" type="button" id="cal-next" aria-label="下个月">→</button>
+        </div>
+      </div>
+
+      <div class="calendar-layout">
+        <div class="panel calendar-panel">
+          <div class="cal-head">
+            <div>
+              <h3 id="cal-title">2026 年 11 月</h3>
+              <p id="cal-sub">第 1–4 周 · 启航适应</p>
+            </div>
+            <div class="cal-legend">
+              <span><i class="lg-dot lg-full"></i>完成</span>
+              <span><i class="lg-dot lg-rest"></i>休息</span>
+              <span><i class="lg-dot lg-exam"></i>节点</span>
+            </div>
+          </div>
+          <div class="cal-weekdays" aria-hidden="true">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div class="calendar-grid" id="calendar-grid"></div>
+          <div class="cal-foot">
+            <span>格子底部的细线 = 当日必做完成度</span>
+            <span>「休」= 全休日，「半」= 半休日</span>
+          </div>
+        </div>
+        <aside class="panel day-panel" id="day-panel" aria-label="选中日期详情"></aside>
+      </div>
+    </section>
+
+    <section class="view" id="view-plan" data-view-panel="plan" hidden>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span>THE WHOLE ROAD</p>
+          <h2>全程规划</h2>
+          <p class="section-sub">从 2026 年 11 月到 2027 年 12 月，7 个阶段、60 周。不是每天拼命，是每天推进。</p>
+        </div>
+        <button class="ghost-btn print-btn" type="button" id="print-plan">打印 / 存 PDF</button>
+      </div>
+      <div id="phase-route-plan" class="plan-route"></div>
+      <div id="phase-cards" class="phase-list"></div>
+
+      <div class="plan-grid">
+        <section class="panel" id="key-dates"></section>
+        <section class="panel" id="weekly-rhythm"></section>
+      </div>
+
+      <section class="panel" id="subject-strategy"></section>
+
+      <div class="plan-grid">
+        <section class="panel" id="rest-rules"></section>
+        <section class="panel" id="target-score"></section>
+      </div>
+    </section>
+
+    <section class="view" id="view-stats" data-view-panel="stats" hidden>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-dot"></span>YOUR RECORD</p>
+          <h2>数据</h2>
+          <p class="section-sub">只和昨天的自己比。所有记录保存在本机浏览器，可导出备份。</p>
+        </div>
+        <div class="hero-mini" id="stats-mini"></div>
+      </div>
+
+      <div class="stat-grid" id="stats-overview"></div>
+
+      <section class="panel heatmap-panel" id="heatmap-panel"></section>
+
+      <div class="stats-two-col">
+        <section class="panel" id="subject-stats"></section>
+        <section class="panel" id="monthly-chart"></section>
+      </div>
+
+      <section class="panel data-panel" id="data-panel"></section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <span class="footer-seal">研</span>
+      <p>研途 408 · 2028 考研<br><span>把今天过好，就是最好的长期主义。</span></p>
+    </div>
+    <p class="footer-note">计划是地图，不是枷锁。状态差的日子，完成保底任务也算赢。</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+
+  <script src="assets/plan.js"></script>
+  <script src="assets/weeks-a.js"></script>
+  <script src="assets/weeks-b.js"></script>
+  <script src="assets/core-base.js"></script>
+  <script src="assets/core-day.js"></script>
+  <script src="assets/core-stats.js"></script>
+  <script src="assets/ui-core.js"></script>
+  <script src="assets/ui-calendar.js"></script>
+  <script src="assets/ui-plan.js"></script>
+  <script src="assets/ui-stats.js"></script>
+  <script src="assets/ui-init.js"></script>
+</body>
+</html>
