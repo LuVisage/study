@@ -5,11 +5,11 @@
   --ink: #1d1b17;
   --deep: #1d1b17;
   --deep-text: #f8f3e8;
-  --muted: #716b5f;
-  --faint: #9b9384;
+  --muted: #5f594e;
+  --faint: #6f685c;
   --line: #e3dac8;
   --line-strong: #d3c7b1;
-  --red: #c4472f;
+  --red: #b8402a;
   --red-deep: #a53823;
   --jade: #2e6b5a;
   --gold: #a97c34;
@@ -27,7 +27,7 @@
   --card: #211e19;
   --ink: #f2ecdf;
   --muted: #aaa193;
-  --faint: #7f776a;
+  --faint: #948b7c;
   --line: #37322a;
   --line-strong: #4b4439;
   --red: #e06a4e;
@@ -227,7 +227,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px 80px; }
 }
 .route-seg:hover { color: var(--ink); }
 .route-seg:hover::before { background: var(--c); transform: scale(1.2); }
-.route-seg.is-active { border-color: var(--c); color: var(--c); }
+.route-seg.is-active { border-color: var(--c); color: color-mix(in srgb, var(--c) 72%, var(--ink)); }
 .route-seg.is-active::before { background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent); }
 .route-name { display: block; font-family: var(--serif); font-size: 15px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .route-weeks { display: block; margin-top: 3px; color: var(--faint); font-size: 9px; letter-spacing: .05em; white-space: nowrap; }
@@ -323,6 +323,11 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 28px 80px; }
 }
 .side-kicker { color: var(--faint); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; }
 .streak-card .side-kicker { color: color-mix(in srgb, var(--deep-text) 55%, transparent); }
+.streak-card .progress-main strong span,
+.streak-card .progress-main p,
+.streak-card .rest-row span { color: color-mix(in srgb, var(--deep-text) 68%, transparent); }
+.streak-card .rest-row b { color: var(--deep-text); }
+.streak-card .week-dot.is-today small { color: #e06a4e; }
 .streak-top { display: flex; align-items: center; justify-content: space-between; }
 .flame { color: var(--red); display: inline-flex; }
 .streak-big { margin-top: 10px; font-family: var(--serif); font-size: 48px; line-height: 1; font-variant-numeric: tabular-nums; }
