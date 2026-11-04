@@ -21,50 +21,50 @@
 
   const DETAIL = {
     mathLecture: {
-      base: '武忠祥基础课对应章节：先自己推导一遍，再整理成一页笔记，最后做 3 道例题。',
-      strength: '强化课 + 辅导讲义例题：遮住答案独立做，卡住再听讲解，重点记思路。',
-      sprint: '不刷新课，只回看真题暴露的漏洞；把对应讲义例题再做一遍。'
+      base: '先理解概念，再跟着例题推导，最后整理一页笔记。',
+      strength: '先独立做例题，卡住再看讲解，重点记思路。',
+      sprint: '只回看薄弱章节，把典型例题再做一遍。'
     },
     mathPractice: {
-      base: '课后题 / 660 题 8–10 道：先做后看答案，错题标注错因（概念、计算、思路）。',
-      strength: '880 题 / 严选题 8–10 道：限时完成，记录卡壳点，做完立刻订正。',
-      sprint: '只做错题与同类题；每道题写完整步骤，训练考场书写。'
+      base: '做课后题，先做后看答案，错题标出错因。',
+      strength: '限时做题，记录卡壳点，做完立刻订正。',
+      sprint: '只做错题和同类题，每道题写完整步骤。'
     },
-    mathReview: '重做本周错题 + 默写公式定理；不刷新题，把会做的做熟。',
+    mathReview: '重做本周错题，默写公式定理；不刷新题。',
     mathTest: {
-      base: '限时 60–75 分钟，做完立刻订正，记录失分原因。',
-      strength: '限时 90 分钟，按真题节奏；做完先自评，再对答案。',
-      sprint: '全真限时 180 分钟；不查资料、不去厕所，模拟考场。'
+      base: '限时完成，做完立刻订正，记录失分原因。',
+      strength: '按考试节奏限时，做完先自评再对答案。',
+      sprint: '全真限时，不查资料，模拟考场。'
     },
     c408Study: {
-      base: '王道单科书 + 对应视频：画图、写笔记，别只划书；每节后合上书口述框架。',
-      strength: '二轮不看视频：先回忆框架再翻书，补第一轮漏点，整理错题页码。',
-      sprint: '只看错题与笔记，口述考点；不再从头看书。'
+      base: '看对应章节，画框架图；合上书复述一遍。',
+      strength: '先回忆框架再看书，补第一轮漏点。',
+      sprint: '只看错题和笔记，口述考点。'
     },
     c408Practice: {
-      base: '王道课后选择题：每个选项写出对 / 错原因，错题标回教材页码。',
-      strength: '真题分类选择 + 大题：严格计时，大题写完整步骤。',
-      sprint: '只做错题与高频题；控制在 40 分钟内，保持手感。'
+      base: '做完对答案，每个错项写出原因。',
+      strength: '限时做题，大题写完整步骤。',
+      sprint: '只做错题和高频题，保持手感。'
     },
-    c408Review: '画本章思维导图 + 重做本周错题；合上书口述本章框架。',
+    c408Review: '重做本周错题，画一章思维导图；合上书复述框架。',
     c408Test: {
-      base: '周测 60 分钟；大题写完整步骤，做完立刻订正。',
-      strength: '真题分类 / 套卷限时；严格计时，训练答题顺序。',
-      sprint: '全真 180 分钟；按考场顺序答题，先易后难。'
+      base: '限时完成，大题写完整步骤，做完订正。',
+      strength: '按考试节奏限时，训练答题顺序。',
+      sprint: '全真限时，先易后难，模拟考场。'
     },
-    engWord: '墨墨 / 不背单词：50 新 + 150 复习；只记核心义，不抄写，滚动复习。',
-    engLong: '田静《句句真研》2 句：划主干、标从句、翻成中文，再对照答案。',
-    engRead: '真题精读：先限时做题，再逐句翻译；每个错项写出错因（偷换、过度、无中生有）。',
-    engWrite: '翻译 1 段 / 作文 1 篇：对照范文改，积累 1 个可迁移功能句。',
-    engTest: '套卷限时 / 二刷错题；阅读错题必须写原因，不只看分数。',
-    cetListen: '六级听力精听 1 篇：先做题，再听写，最后跟读模仿语音语调。',
-    cetRead: '六级阅读 1 篇，限时 12 分钟；精读错题所在句，积累高频词。',
-    cetWrite: '六级翻译 / 作文 1 篇；对照范文改，背 1 个万能句型。',
-    cetMock: '六级真题限时（不含作文 60 分钟）；作文另写，做完统一订正。',
-    algo: '专题 1 个 + 2 题；做完必看题解，有余力再补 1 题。按当前 rating ±100 选题，宁少勿断。',
-    polStudy: '徐涛 / 腿姐强化课 1 节 + 1000 题对应章节；只做选择，错题标页码。',
-    polReview: '1000 题错题二刷 + 本周大题框架；口述关键词，不逐字背。',
-    weeklyReview: '统计完成率；把本周错题归类；写下下周最重要的三件事。',
+    engWord: '按计划滚动复习，记核心义，不抄写。',
+    engLong: '划主干、标从句，翻译后对照答案。',
+    engRead: '先限时做题，再精读错题所在句，写出错因。',
+    engWrite: '写完后对照范文修改，积累一个可迁移句型。',
+    engTest: '限时完成，阅读错题写清原因，不只看分数。',
+    cetListen: '精听一篇：先做题，再跟读。',
+    cetRead: '限时一篇，精读错题所在句，积累高频词。',
+    cetWrite: '写完后对照范文修改，背一个通用句型。',
+    cetMock: '按考试时间限时完成，做完统一订正。',
+    algo: '按当前水平选题，做完看题解；宁少勿断。',
+    polStudy: '看一节课，做对应选择题，错题标页码。',
+    polReview: '二刷错题，口述本周大题框架。',
+    weeklyReview: '统计完成率，归类错题，写下周最重要的三件事。',
     rest: '不安排学习。睡到自然醒、运动 30 分钟、晒太阳；晚上花 10 分钟看一眼下周计划。'
   };
 
@@ -72,16 +72,6 @@
     if (phase.id === 'P0' || phase.id === 'P1' || phase.id === 'P2') return 'base';
     if (phase.id === 'P3' || phase.id === 'P4') return 'strength';
     return 'sprint';
-  }
-  function named(item) {
-    if (!item) return '';
-    return item.name === '408' ? item.topic : item.name + ' · ' + item.topic;
-  }
-  function band(phase) {
-    return {
-      P0: 'CF 800–1000', P1: 'CF 1000–1200', P2: 'CF 1200–1400',
-      P3: 'CF 1300–1500', P4: 'CF 1400–1600', P5: 'CF 1400–1600（保持）', P6: '旧题 / 模板'
-    }[phase.id];
   }
   function isLate(phase) { return phase.id === 'P4' || phase.id === 'P5' || phase.id === 'P6'; }
 
@@ -108,75 +98,75 @@
     };
 
     if (k === START) {
-      add('review', 'setup', '开营 · 定目标 / 装工具 / 写作息', '写下目标分与作息；装好墨墨/不背单词、错题本、CF 账号；把 2027.12.25 写进日历。', 20);
-      add('math', 'math-lecture', wp.math + ' · 听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
-      add('c408', 'c408-a', named(wp.a) + ' · 教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      if (cetActive) add('cet', 'cet-listen', '听力精听 1 篇', DETAIL.cetListen, t.cetListen);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
+      add('review', 'setup', '开营准备', '定下目标分和作息，准备好常用工具，把初试日期写进日历。', 20);
+      add('math', 'math-lecture', '听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
+      add('c408', 'c408-a', '教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      if (cetActive) add('cet', 'cet-listen', '听力', DETAIL.cetListen, t.cetListen);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
       return tasks;
     }
 
     if (wd === 1) {
-      add('math', 'math-lecture', wp.math + ' · 听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
-      add('c408', 'c408-a', named(wp.a) + ' · 教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      add('english', 'eng-long', '长难句 2 句 · 田静句句真研', DETAIL.engLong, t.engLong);
-      if (cetActive) add('cet', 'cet-listen', '听力精听 1 篇', DETAIL.cetListen, t.cetListen);
-      if (hasPol) add('politics', 'pol-study', '强化课 + 1000 题 · ' + wp.pol, DETAIL.polStudy, t.polStudy);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
-      if (isLate(phase)) add('math', 'math-extra', '加餐 · 660/880 错题 5 道', '只做错题，不刷新题；做完写 1 行错因。', t.mathExtra, false);
+      add('math', 'math-lecture', '听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
+      add('c408', 'c408-a', '教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      add('english', 'eng-long', '长难句', DETAIL.engLong, t.engLong);
+      if (cetActive) add('cet', 'cet-listen', '听力', DETAIL.cetListen, t.cetListen);
+      if (hasPol) add('politics', 'pol-study', '强化课 + 选择题', DETAIL.polStudy, t.polStudy);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
+      if (isLate(phase)) add('math', 'math-extra', '错题加餐', '只做错题，不刷新题；做完写一行错因。', t.mathExtra, false);
     } else if (wd === 2) {
-      add('math', 'math-practice', wp.math + ' · 例题 + 习题', DETAIL.mathPractice[st], t.mathPractice);
-      add('c408', 'c408-b', named(wp.b) + ' · 教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      if (phase.id === 'P0') add('english', 'eng-read', '长难句 3 句 + 语法', DETAIL.engLong, t.engRead);
-      else add('english', 'eng-read', '真题精读 · ' + wp.eng, DETAIL.engRead, t.engRead);
-      if (cetActive) add('cet', 'cet-read', '阅读 1 篇 · 限时 12 分钟', DETAIL.cetRead, t.cetRead);
-      if (hasPol) add('politics', 'pol-study', '强化课 + 1000 题 · ' + wp.pol, DETAIL.polStudy, t.polStudy);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
-      if (isLate(phase)) add('c408', 'c408-extra', '加餐 · 王道选择题 10 道', '只做当天章节，做完对答案，错题标页码。', t.c408Extra, false);
+      add('math', 'math-practice', '做题 + 订正', DETAIL.mathPractice[st], t.mathPractice);
+      add('c408', 'c408-b', '教材 + 笔记', DETAIL.c408Study[st], t.c408Study);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      if (phase.id === 'P0') add('english', 'eng-read', '长难句 + 语法', DETAIL.engLong, t.engRead);
+      else add('english', 'eng-read', '真题精读', DETAIL.engRead, t.engRead);
+      if (cetActive) add('cet', 'cet-read', '阅读', DETAIL.cetRead, t.cetRead);
+      if (hasPol) add('politics', 'pol-study', '强化课 + 选择题', DETAIL.polStudy, t.polStudy);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
+      if (isLate(phase)) add('c408', 'c408-extra', '选择题加餐', '只做当天章节，做完对答案，错题标页码。', t.c408Extra, false);
     } else if (wd === 3) {
-      add('math', 'math-lecture', wp.math + ' · 听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
-      add('c408', 'c408-practice-a', named(wp.a) + ' · 王道选择题', DETAIL.c408Practice[st], t.c408Practice);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      add('english', 'eng-long', '长难句 2 句 · 田静句句真研', DETAIL.engLong, t.engLong);
-      if (hasPol) add('politics', 'pol-study', '强化课 + 1000 题 · ' + wp.pol, DETAIL.polStudy, t.polStudy);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
+      add('math', 'math-lecture', '听课 + 笔记', DETAIL.mathLecture[st], t.mathLecture);
+      add('c408', 'c408-practice-a', '选择题', DETAIL.c408Practice[st], t.c408Practice);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      add('english', 'eng-long', '长难句', DETAIL.engLong, t.engLong);
+      if (hasPol) add('politics', 'pol-study', '强化课 + 选择题', DETAIL.polStudy, t.polStudy);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
     } else if (wd === 4) {
-      add('math', 'math-practice', wp.math + ' · 例题 + 习题', DETAIL.mathPractice[st], t.mathPractice);
-      add('c408', 'c408-practice-b', named(wp.b) + ' · 王道选择题', DETAIL.c408Practice[st], t.c408Practice);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      if (phase.id === 'P0') add('english', 'eng-read', '长难句 3 句 + 语法', DETAIL.engLong, t.engRead);
-      else add('english', 'eng-read', '真题精读 · ' + wp.eng, DETAIL.engRead, t.engRead);
-      if (cetActive) add('cet', 'cet-write', '翻译 / 作文 1 篇', DETAIL.cetWrite, t.cetWrite);
-      if (hasPol) add('politics', 'pol-study', '强化课 + 1000 题 · ' + wp.pol, DETAIL.polStudy, t.polStudy);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
-      if (isLate(phase)) add('math', 'math-extra', '加餐 · 660/880 错题 5 道', '只做错题，不刷新题；做完写 1 行错因。', t.mathExtra, false);
+      add('math', 'math-practice', '做题 + 订正', DETAIL.mathPractice[st], t.mathPractice);
+      add('c408', 'c408-practice-b', '选择题', DETAIL.c408Practice[st], t.c408Practice);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      if (phase.id === 'P0') add('english', 'eng-read', '长难句 + 语法', DETAIL.engLong, t.engRead);
+      else add('english', 'eng-read', '真题精读', DETAIL.engRead, t.engRead);
+      if (cetActive) add('cet', 'cet-write', '翻译 / 作文', DETAIL.cetWrite, t.cetWrite);
+      if (hasPol) add('politics', 'pol-study', '强化课 + 选择题', DETAIL.polStudy, t.polStudy);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
+      if (isLate(phase)) add('math', 'math-extra', '错题加餐', '只做错题，不刷新题；做完写一行错因。', t.mathExtra, false);
     } else if (wd === 5) {
-      add('math', 'math-review', '本周错题重做 + 公式默写', DETAIL.mathReview, t.mathReview);
-      add('c408', 'c408-review', '本周错题 + 思维导图', DETAIL.c408Review, t.c408Review);
-      add('english', 'eng-word', '单词 50 新 + 150 复习', DETAIL.engWord, t.engWord);
-      add('english', 'eng-write', '翻译 / 作文 · ' + wp.eng, DETAIL.engWrite, t.engWrite);
-      if (hasPol) add('politics', 'pol-study', '强化课 + 1000 题 · ' + wp.pol, DETAIL.polStudy, t.polStudy);
-      add('algo', 'algo-daily', '专题：' + wp.algo + ' · 2 题', DETAIL.algo + ' 当前区间：' + band(phase) + '。', t.algoDaily);
+      add('math', 'math-review', '错题 + 公式', DETAIL.mathReview, t.mathReview);
+      add('c408', 'c408-review', '错题 + 导图', DETAIL.c408Review, t.c408Review);
+      add('english', 'eng-word', '单词', DETAIL.engWord, t.engWord);
+      add('english', 'eng-write', '翻译 / 作文', DETAIL.engWrite, t.engWrite);
+      if (hasPol) add('politics', 'pol-study', '强化课 + 选择题', DETAIL.polStudy, t.polStudy);
+      add('algo', 'algo-daily', '每日一练', DETAIL.algo, t.algoDaily);
     } else if (wd === 6) {
       var mathTitle;
-      if (phase.id === 'P0' || phase.id === 'P1' || phase.id === 'P2') mathTitle = '周测 · ' + wp.math;
-      else if (phase.id === 'P3' || phase.id === 'P4') mathTitle = '强化周测 · ' + wp.math;
-      else mathTitle = '全真限时 · ' + wp.math;
+      if (phase.id === 'P0' || phase.id === 'P1' || phase.id === 'P2') mathTitle = '周测';
+      else if (phase.id === 'P3' || phase.id === 'P4') mathTitle = '强化周测';
+      else mathTitle = '全真限时';
       add('math', 'math-test', mathTitle, DETAIL.mathTest[st], t.mathTest);
       var c408Title;
-      if (phase.id === 'P0' || phase.id === 'P1' || phase.id === 'P2') c408Title = '周测 · ' + wp.a.name + ' + ' + wp.b.name;
-      else if (phase.id === 'P3') c408Title = '强化周测 · ' + wp.a.name;
-      else if (phase.id === 'P4') c408Title = '真题分类测 · ' + wp.a.name;
-      else c408Title = '全真套卷 · ' + wp.a.topic;
+      if (phase.id === 'P0' || phase.id === 'P1' || phase.id === 'P2') c408Title = '周测';
+      else if (phase.id === 'P3') c408Title = '强化周测';
+      else if (phase.id === 'P4') c408Title = '真题分类';
+      else c408Title = '全真套卷';
       add('c408', 'c408-test', c408Title, DETAIL.c408Test[st], t.c408Test);
-      if (phase.id === 'P0') add('english', 'eng-test', '本周复盘 · 单词 + 长难句', '把本周单词过一遍，长难句挑 2 句重译；不刷新题。', t.engTest);
-      else add('english', 'eng-test', '套卷 / 二刷 · ' + wp.eng, DETAIL.engTest, t.engTest);
-      if (cetMockWeek) add('cet', 'cet-mock', '模考 / 真题 · 六级', DETAIL.cetMock, t.cetMock);
-      if (hasPol) add('politics', 'pol-review', '本周错题 + 背诵 · ' + wp.pol, DETAIL.polReview, t.polReview);
-      add('algo', 'algo-contest', '周赛 · ABC / CF / 洛谷', '赛后补 1 题，写 3 行总结；不追求 rating，追求补题质量。', t.algoContest, !isLate(phase));
+      if (phase.id === 'P0') add('english', 'eng-test', '本周复盘', '把本周单词过一遍，长难句挑两句重译；不刷新题。', t.engTest);
+      else add('english', 'eng-test', '套卷 / 二刷', DETAIL.engTest, t.engTest);
+      if (cetMockWeek) add('cet', 'cet-mock', '模考 / 真题', DETAIL.cetMock, t.cetMock);
+      if (hasPol) add('politics', 'pol-review', '错题 + 背诵', DETAIL.polReview, t.polReview);
+      add('algo', 'algo-contest', '周赛', '赛后补一题，写几行总结；不追 rating，追补题质量。', t.algoContest, !isLate(phase));
     }
     return tasks;
   }
@@ -187,9 +177,9 @@
       const task = makeTask(k, subject, key, title, detail, minutes, core);
       if (task) tasks.push(task);
     };
-    add('review', 'week-review', '周复盘 · 完成率 / 错题 / 下周计划', DETAIL.weeklyReview, 25);
-    add('english', 'eng-word', '单词复习 100 个', '只过今天的复习词，不背新词。', 20, false);
-    add('algo', 'algo-review', '补题 1 道 / 复习 1 个模板', '选最弱的一个点，30 分钟即可。', 30, false);
+    add('review', 'week-review', '周复盘', DETAIL.weeklyReview, 25);
+    add('english', 'eng-word', '单词复习', '只过今天的复习词，不背新词。', 20, false);
+    add('algo', 'algo-review', '补题 / 复习模板', '选最弱的一个点，做半小时即可。', 30, false);
     return tasks;
   }
 
