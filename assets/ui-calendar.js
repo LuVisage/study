@@ -61,6 +61,8 @@
     else if (!future && ds.percent > 0) cls += ' is-partial';
     if (k === today) cls += ' is-today';
     if (k === UI.getSelected()) cls += ' is-selected';
+    const note = A.getNote(k);
+    if (note) cls += ' has-note';
 
     let mark = '';
     if (k === today) mark = '今';
@@ -83,7 +85,7 @@
     const statusText = day.rest === 'full' ? '全休日'
       : day.kind === 'exam' ? '初试'
       : ds.passed ? '已达标' : day.rest === 'light' ? '半休' : '待完成';
-    const label = (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日 · ' + statusText + ' · 必做 ' + ds.coreDone + '/' + ds.coreTotal;
+    const label = (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日 · ' + statusText + ' · 必做 ' + ds.coreDone + '/' + ds.coreTotal + (note ? ' · 有每日记录' : '');
     return '<button class="' + cls + '" type="button" data-day-cell="' + k + '" aria-label="' + UI.esc(label) + '" title="' + UI.esc(label) + '">' +
       '<span class="cal-num">' + d.getUTCDate() + '</span>' +
       (mark ? '<span class="cal-mark' + (markClass || '') + '">' + mark + '</span>' : '') +
@@ -145,6 +147,20 @@
     const phase = day.phase;
     const status = UI.statusChip(day, ds);
     const progress = day.rest === 'full' ? '' : UI.progressStrip(day, ds, future);
+    const note = A.getNote(k);
+    const journal =
+      '<div class="day-journal">' +
+        '<div class="day-journal-head">' +
+          '<span>每日记录</span>' +
+          '<span class="day-journal-count"><b>' + note.length + '</b>/160</span>' +
+        '</div>' +
+        '<textarea class="day-journal-input" data-note-date="' + k + '" maxlength="160" rows="2" placeholder="' +
+          (future ? '还没到这一天。到那天再写。' : '一句话记下今天：状态、卡点、明天先做什么。') + '"' +
+          (future ? ' disabled' : '') + '>' + UI.esc(note) + '</textarea>' +
+        '<div class="day-journal-foot"><span class="day-journal-status">' +
+          (future ? '未到日期，暂不可写' : '自动保存在本机') +
+        '</span></div>' +
+      '</div>';
     let content = '';
 
     if (day.rest === 'full') {
@@ -168,6 +184,7 @@
       '<h3 class="day-theme">' + UI.esc(day.theme) + '</h3>' +
       (day.note ? '<p class="day-note-sm">' + UI.esc(day.note) + '</p>' : '') +
       progress +
+      journal +
       content;
   }
 

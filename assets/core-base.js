@@ -109,7 +109,8 @@
   }
 
   const STORE = 'yantu408.state.v1';
-  let state = { checks: {}, theme: 'light' };
+  function emptyPomo() { return { days: {}, timer: null }; }
+  let state = { checks: {}, theme: 'light', notes: {}, pomo: emptyPomo() };
   try {
     const raw = localStorage.getItem(STORE);
     if (raw) {
@@ -118,6 +119,26 @@
         state.checks = parsed.checks;
       }
       if (parsed && parsed.theme) state.theme = parsed.theme;
+      if (parsed && parsed.notes && typeof parsed.notes === 'object') {
+        Object.keys(parsed.notes).forEach(function (k) {
+          if (/^\d{4}-\d{2}-\d{2}$/.test(k) && typeof parsed.notes[k] === 'string') {
+            const v = parsed.notes[k].trim().slice(0, 160);
+            if (v) state.notes[k] = v;
+          }
+        });
+      }
+      if (parsed && parsed.pomo && parsed.pomo.days && typeof parsed.pomo.days === 'object') {
+        Object.keys(parsed.pomo.days).forEach(function (k) {
+          const d = parsed.pomo.days[k];
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !d || typeof d !== 'object') return;
+          const sessions = Math.max(0, Math.floor(Number(d.sessions) || 0));
+          const minutes = Math.max(0, Math.round(Number(d.minutes) || 0));
+          if (sessions || minutes) state.pomo.days[k] = { sessions: sessions, minutes: minutes };
+        });
+      }
+      if (parsed && parsed.pomo && parsed.pomo.timer && typeof parsed.pomo.timer === 'object') {
+        state.pomo.timer = parsed.pomo.timer;
+      }
     }
   } catch (e) { console.warn('[研途408] 读取进度失败', e); }
 
@@ -130,25 +151,82 @@
     saveState();
   }
   function setTheme(theme) { state.theme = theme; saveState(); }
-  function resetData() { state.checks = {}; saveState(); }
+  function getNote(k) { return state.notes[k] || ''; }
+  function setNote(k, text) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return '';
+    const v = String(text == null ? '' : text).trim().slice(0, 160);
+    if (v) state.notes[k] = v; else delete state.notes[k];
+    saveState();
+    return v;
+  }
+  function addPomoSession(k, minutes) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return;
+    const day = state.pomo.days[k] || (state.pomo.days[k] = { sessions: 0, minutes: 0 });
+    day.sessions += 1;
+    day.minutes += Math.max(0, Math.round(minutes || 0));
+    saveState();
+  }
+  function savePomoTimer(timer) {
+    state.pomo.timer = timer ? {
+      mode: timer.mode,
+      remaining: Math.max(0, Math.round(timer.remaining || 0)),
+      running: !!timer.running,
+      endAt: timer.endAt || null
+    } : null;
+    saveState();
+  }
+  function resetData() {
+    state.checks = {};
+    state.notes = {};
+    state.pomo = emptyPomo();
+    saveState();
+  }
   function exportJSON() {
     return JSON.stringify({
-      app: 'yantu408', version: 1,
+      app: 'yantu408', version: 2,
       exportedAt: new Date().toISOString(),
-      state: { checks: state.checks }
+      state: {
+        checks: state.checks,
+        notes: state.notes,
+        pomo: { days: state.pomo.days }
+      }
     }, null, 2);
   }
   function importJSON(text) {
     const parsed = JSON.parse(text);
-    const checks = parsed && parsed.state && parsed.state.checks
-      ? parsed.state.checks
-      : parsed && parsed.checks ? parsed.checks : null;
+    const root = parsed && parsed.state && typeof parsed.state === 'object' ? parsed.state : parsed;
+    const checks = root && root.checks ? root.checks : null;
     if (!checks || typeof checks !== 'object') throw new Error('文件格式不正确');
     const clean = {};
     Object.keys(checks).forEach(function (k) { if (checks[k]) clean[k] = true; });
+
+    const notes = {};
+    if (root.notes && typeof root.notes === 'object') {
+      Object.keys(root.notes).forEach(function (k) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || typeof root.notes[k] !== 'string') return;
+        const v = root.notes[k].trim().slice(0, 160);
+        if (v) notes[k] = v;
+      });
+    }
+
+    const days = {};
+    const srcDays = root.pomo && root.pomo.days ? root.pomo.days : null;
+    if (srcDays && typeof srcDays === 'object') {
+      Object.keys(srcDays).forEach(function (k) {
+        const d = srcDays[k];
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !d || typeof d !== 'object') return;
+        const sessions = Math.max(0, Math.floor(Number(d.sessions) || 0));
+        const minutes = Math.max(0, Math.round(Number(d.minutes) || 0));
+        if (sessions || minutes) days[k] = { sessions: sessions, minutes: minutes };
+      });
+    }
+
     state.checks = clean;
+    state.notes = notes;
+    state.pomo.days = days;
+    state.pomo.timer = null;
     saveState();
-    return Object.keys(clean).length;
+    return { checks: Object.keys(clean).length, notes: Object.keys(notes).length, pomoDays: Object.keys(days).length };
   }
 
   window.YTApp = {
@@ -162,6 +240,8 @@
     weekNo: weekNo, weekFor: weekFor, phaseFor: phaseFor,
     fmtDuration: fmtDuration, fmtHours: fmtHours, fmtDate: fmtDate, fmtDateDot: fmtDateDot,
     isChecked: isChecked, toggleTask: toggleTask, setTheme: setTheme,
+    getNote: getNote, setNote: setNote,
+    addPomoSession: addPomoSession, savePomoTimer: savePomoTimer,
     resetData: resetData, exportJSON: exportJSON, importJSON: importJSON,
     getState: function () { return state; },
     saveState: saveState

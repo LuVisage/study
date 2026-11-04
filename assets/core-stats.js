@@ -137,6 +137,23 @@
     return Math.max(1, Math.min(A.diff(START, EXAM) + 1, A.diff(START, t) + 1));
   }
 
+  function pomoTotals() {
+    const days = (A.getState().pomo && A.getState().pomo.days) || {};
+    let sessions = 0, minutes = 0;
+    Object.keys(days).forEach(function (k) {
+      sessions += Math.max(0, days[k].sessions || 0);
+      minutes += Math.max(0, days[k].minutes || 0);
+    });
+    const today = activeToday();
+    const t = days[today] || { sessions: 0, minutes: 0 };
+    return {
+      sessions: sessions,
+      minutes: minutes,
+      todaySessions: Math.max(0, t.sessions || 0),
+      todayMinutes: Math.max(0, t.minutes || 0)
+    };
+  }
+
   A.subjectStats = subjectStats;
   A.overallStats = overallStats;
   A.monthlyStats = monthlyStats;
@@ -145,4 +162,5 @@
   A.prepDay = prepDay;
   A.weekSummary = weekSummary;
   A.dateRange = dateRange;
+  A.pomoTotals = pomoTotals;
 })();

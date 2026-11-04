@@ -13,6 +13,29 @@
     else if (v === 'stats') UI.renderStats();
   }
 
+  const noteTimers = new WeakMap();
+
+  function saveJournal(el) {
+    if (!el) return;
+    const k = el.dataset.noteDate;
+    if (!k) return;
+    const v = A.setNote(k, el.value);
+    const wrap = el.closest('.day-journal');
+    if (wrap) {
+      const count = wrap.querySelector('.day-journal-count b');
+      if (count) count.textContent = String(v.length);
+      const status = wrap.querySelector('.day-journal-status');
+      if (status) status.textContent = '已保存 · 本机';
+    }
+    const cell = document.querySelector('[data-day-cell="' + k + '"]');
+    if (cell) cell.classList.toggle('has-note', !!v);
+  }
+
+  function flushJournal() {
+    const el = document.activeElement;
+    if (el && el.classList && el.classList.contains('day-journal-input')) saveJournal(el);
+  }
+
   function handleTaskChange(e) {
     const cb = e.target.closest('.task-check');
     if (!cb) return;
@@ -60,8 +83,9 @@
   }
 
   function resetConfirm() {
-    if (!window.confirm('确定清空全部打卡记录吗？此操作不可撤销，建议先导出。')) return;
+    if (!window.confirm('确定清空全部打卡、每日记录和番茄统计吗？此操作不可撤销，建议先导出。')) return;
     A.resetData();
+    window.dispatchEvent(new CustomEvent('yantu:statereload'));
     refreshCurrent();
     UI.showToast('打卡记录已清空，计划还在。', 2400);
   }
@@ -88,6 +112,30 @@
     document.addEventListener('change', function (e) {
       if (e.target.classList && e.target.classList.contains('task-check')) handleTaskChange(e);
     });
+
+    document.addEventListener('input', function (e) {
+      const el = e.target;
+      if (!el.classList || !el.classList.contains('day-journal-input')) return;
+      const wrap = el.closest('.day-journal');
+      if (wrap) {
+        const count = wrap.querySelector('.day-journal-count b');
+        if (count) count.textContent = String(Math.min(el.value.length, 160));
+        const status = wrap.querySelector('.day-journal-status');
+        if (status) status.textContent = '正在保存…';
+      }
+      clearTimeout(noteTimers.get(el));
+      noteTimers.set(el, setTimeout(function () { saveJournal(el); }, 320));
+    });
+
+    document.addEventListener('focusout', function (e) {
+      const el = e.target;
+      if (el && el.classList && el.classList.contains('day-journal-input')) {
+        clearTimeout(noteTimers.get(el));
+        saveJournal(el);
+      }
+    });
+
+    window.addEventListener('beforeunload', flushJournal);
 
     const calPrev = document.getElementById('cal-prev');
     const calNext = document.getElementById('cal-next');
@@ -128,10 +176,11 @@
       const reader = new FileReader();
       reader.onload = function () {
         try {
-          if (!window.confirm('导入会覆盖当前勾选记录，继续吗？')) { file.value = ''; return; }
+          if (!window.confirm('导入会覆盖当前打卡、每日记录和番茄统计，继续吗？')) { file.value = ''; return; }
           const n = A.importJSON(reader.result);
+          window.dispatchEvent(new CustomEvent('yantu:statereload'));
           refreshCurrent();
-          UI.showToast('已导入 ' + n + ' 条打卡记录。', 2600);
+          UI.showToast('已导入 ' + n.checks + ' 条打卡、' + n.notes + ' 条每日记录。', 3000);
         } catch (err) {
           UI.showToast('导入失败：' + err.message, 3200);
         }
@@ -162,13 +211,22 @@
     UI.navigate(view, { silent: true });
 
     let lastDay = A.activeToday();
-    setInterval(function () {
+    function checkDayChange() {
       const now = A.activeToday();
-      if (now !== lastDay) {
-        lastDay = now;
-        refreshCurrent();
-      }
-    }, 60000);
+      if (now === lastDay) return;
+      lastDay = now;
+      flushJournal();
+      if (UI.getCurrentView() === 'calendar' && UI.calToday) UI.calToday();
+      else refreshCurrent();
+      window.dispatchEvent(new CustomEvent('yantu:daychange', { detail: { date: now } }));
+      UI.showToast('新的一天，计划已更新。', 3000);
+    }
+    setInterval(checkDayChange, 30000);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) checkDayChange();
+    });
+    window.addEventListener('focus', checkDayChange);
+    window.addEventListener('pageshow', checkDayChange);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

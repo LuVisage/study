@@ -107,17 +107,19 @@
 
   function renderData() {
     const p = A.planTotals();
+    const pm = A.pomoTotals();
     return '<div class="panel-title"><div><p class="eyebrow"><span class="eyebrow-dot"></span>LOCAL DATA</p><h3>数据管理</h3><p class="panel-sub">进度只存在这台设备的浏览器里。换设备前先导出。</p></div></div>' +
       '<div class="rest-grid">' +
         '<div class="rest-rule"><h4>全程计划量</h4><p>' + p.weeks + ' 周 · ' + p.days + ' 天 · 约 ' + p.hours + ' 小时 · ' + p.tasks + ' 项任务</p></div>' +
         '<div class="rest-rule"><h4>休息日</h4><p>' + p.restFull + ' 个全休日 · ' + p.restLight + ' 个半休日（含考前准备日）</p></div>' +
+        '<div class="rest-rule"><h4>番茄钟</h4><p>今日 ' + pm.todaySessions + ' 个 · ' + pm.todayMinutes + ' 分钟；累计 ' + pm.sessions + ' 个 · 约 ' + A.fmtHours(pm.minutes) + ' 小时</p></div>' +
       '</div>' +
       '<div class="data-actions">' +
         '<button class="ghost-btn" type="button" id="export-data">导出进度 JSON</button>' +
         '<button class="ghost-btn" type="button" id="import-data">导入进度</button>' +
         '<button class="ghost-btn danger-btn" type="button" id="reset-data">清空进度</button>' +
       '</div>' +
-      '<p class="data-note">导入会覆盖当前勾选记录。建议每周日复盘后导出一次，文件名自带日期。</p>';
+      '<p class="data-note">导入会覆盖当前打卡、每日记录和番茄统计。建议每周日复盘后导出一次，文件名自带日期。</p>';
   }
 
   UI.renderStats = function () {

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="2028 考研 11408 全程学习规划与每日打卡：数学一、408、英语一、政治、六级与算法竞赛。">
   <title>研途 408 · 2028 考研打卡</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/calendar.css">
+  <link rel="stylesheet" href="assets/styles.css?v=20261104">
+  <link rel="stylesheet" href="assets/calendar.css?v=20261104">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -70,7 +70,7 @@
         <div>
           <p class="eyebrow"><span class="eyebrow-dot"></span>PLAN CALENDAR</p>
           <h2>日历</h2>
-          <p class="section-sub">60 周、419 天，休息日也标在格子里。点开任意一天，查看或补卡。</p>
+          <p class="section-sub">60 周、419 天，休息日也标在格子里。点开任意一天，查看安排、补卡，或写一句每日记录。</p>
         </div>
         <div class="cal-actions">
           <button class="ghost-btn" type="button" id="cal-today">回到今天</button>
@@ -90,6 +90,7 @@
               <span><i class="lg-dot lg-full"></i>完成</span>
               <span><i class="lg-dot lg-rest"></i>休息</span>
               <span><i class="lg-dot lg-exam"></i>节点</span>
+              <span><i class="lg-dot lg-note"></i>记录</span>
             </div>
           </div>
           <div class="cal-weekdays" aria-hidden="true">
@@ -97,7 +98,7 @@
           </div>
           <div class="calendar-grid" id="calendar-grid"></div>
           <div class="cal-foot">
-            <span>格子底部的细线 = 当日必做完成度</span>
+            <span>格子底部细线 = 必做完成度；日期旁红点 = 有每日记录</span>
             <span>「休」= 全休日，「半」= 半休日</span>
           </div>
         </div>
@@ -165,16 +166,60 @@
   <canvas id="confetti" aria-hidden="true"></canvas>
   <input type="file" id="import-file" accept="application/json,.json" hidden>
 
-  <script src="assets/plan.js"></script>
-  <script src="assets/weeks-a.js"></script>
-  <script src="assets/weeks-b.js"></script>
-  <script src="assets/core-base.js"></script>
-  <script src="assets/core-day.js"></script>
-  <script src="assets/core-stats.js"></script>
-  <script src="assets/ui-core.js"></script>
-  <script src="assets/ui-calendar.js"></script>
-  <script src="assets/ui-plan.js"></script>
-  <script src="assets/ui-stats.js"></script>
-  <script src="assets/ui-init.js"></script>
+  <div class="pomo" id="pomo" data-mode="focus">
+    <button class="pomo-fab" type="button" id="pomo-fab" aria-expanded="false" aria-controls="pomo-panel" aria-labelledby="pomo-fab-time pomo-fab-label">
+      <span class="pomo-fab-icon" aria-hidden="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="7.4" stroke="currentColor" stroke-width="1.7"/><path d="M12 9.5V13l2.4 1.5M9.4 3.4h5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </span>
+      <span class="pomo-fab-copy">
+        <b id="pomo-fab-time">25:00</b>
+        <small id="pomo-fab-label">番茄钟</small>
+      </span>
+    </button>
+
+    <section class="pomo-panel" id="pomo-panel" aria-label="番茄钟" hidden>
+      <div class="pomo-head">
+        <div>
+          <p class="pomo-kicker">POMODORO</p>
+          <h3 id="pomo-mode-label">专注 · 25 分钟</h3>
+        </div>
+        <button class="pomo-close" type="button" id="pomo-close" aria-label="收起番茄钟">×</button>
+      </div>
+
+      <div class="pomo-tabs" role="group" aria-label="计时模式">
+        <button type="button" data-pomo-mode="focus" aria-pressed="true">专注 25</button>
+        <button type="button" data-pomo-mode="short" aria-pressed="false">短休 5</button>
+        <button type="button" data-pomo-mode="long" aria-pressed="false">长休 15</button>
+      </div>
+
+      <div class="pomo-clock" id="pomo-clock" role="timer" aria-label="剩余 25 分钟">
+        <span class="pomo-time" id="pomo-time">25:00</span>
+        <span class="pomo-clock-sub" id="pomo-clock-sub">只做一件事</span>
+      </div>
+
+      <div class="pomo-controls">
+        <button class="pomo-primary" type="button" id="pomo-toggle">开始专注</button>
+        <button class="pomo-ghost" type="button" id="pomo-reset">重置</button>
+      </div>
+
+      <div class="pomo-foot">
+        <span>今日 <b id="pomo-today">0</b> 个 · <b id="pomo-today-min">0</b> 分钟</span>
+        <span>累计 <b id="pomo-total">0</b> 个</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="assets/plan.js?v=20261104"></script>
+  <script src="assets/weeks-a.js?v=20261104"></script>
+  <script src="assets/weeks-b.js?v=20261104"></script>
+  <script src="assets/core-base.js?v=20261104"></script>
+  <script src="assets/core-day.js?v=20261104"></script>
+  <script src="assets/core-stats.js?v=20261104"></script>
+  <script src="assets/ui-core.js?v=20261104"></script>
+  <script src="assets/ui-calendar.js?v=20261104"></script>
+  <script src="assets/ui-plan.js?v=20261104"></script>
+  <script src="assets/ui-stats.js?v=20261104"></script>
+  <script src="assets/ui-init.js?v=20261104"></script>
+  <script src="assets/pomodoro.js?v=20261104"></script>
 </body>
 </html>
